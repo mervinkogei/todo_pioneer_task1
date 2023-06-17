@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:todo_pioneer_task1/Screens/home.dart';
 import 'package:todo_pioneer_task1/Utils/colors.dart';
 import 'package:todo_pioneer_task1/Utils/themeStyling.dart';
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -32,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
  @override
   void initState() {
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(Duration(milliseconds: 3000), () {
       Navigator.pushReplacement(context, (MaterialPageRoute(builder: (context)=> Home())));
     });
     super.initState();
@@ -61,10 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: blueColor,
                     ),
                   ),
-                  TextSpan(
-                    text: "Search",
+                  // TextSpan(
+                  //   text: "Search",
                     // style: AppTheme.logoStyle,
-                  ),
+                  // ),
                 ],
               ),
             ),
