@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:todo_pioneer_task1/Utils/colors.dart';
 import 'package:todo_pioneer_task1/Utils/themeStyling.dart';
+import 'package:todo_pioneer_task1/models/todo_model.dart';
 
 class TodoItems extends StatelessWidget {
-  const TodoItems({Key? key}) : super(key: key);
+  final TodoModel todo;
+  const TodoItems({required this.todo});
 
   @override
   Widget build(BuildContext context) {
-    return Container(      
-      child: ListTile(
+    return Container( 
+      margin: EdgeInsets.only(bottom: 5),     
+      child: ListTile(        
         onTap: (){
           print("Test");
         },
@@ -17,8 +20,8 @@ class TodoItems extends StatelessWidget {
           borderRadius: BorderRadius.circular(10)
         ),
         tileColor: Colors.white,
-        leading: Icon(Icons.check_box, color: blueColor,),
-        title: Text('Check Mail', style: ThemeStyling.todoTitleStyle,),
+        leading: Icon(todo.isdone! ? Icons.check_box : Icons.check_box_outline_blank_outlined, color: blueColor,),
+        title: Text('${todo.todoTitle}', style: todo.isdone! ? ThemeStyling.todoTitleStyle : ThemeStyling.todoStyle,),
         trailing: Container(
           padding: EdgeInsets.all(0),
           margin: EdgeInsets.symmetric(vertical: 12),

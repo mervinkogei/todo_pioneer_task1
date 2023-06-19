@@ -15,7 +15,10 @@ class ThemeStyling{
   static var todoTitleStyle = GoogleFonts.montserrat(
     fontSize: 16.0,
     fontWeight: FontWeight.w300,
-    letterSpacing: 1.2,
     decoration: TextDecoration.lineThrough
+  );
+   static var todoStyle = GoogleFonts.montserrat(
+    fontSize: 16.0,
+    fontWeight: FontWeight.w300,
   );
 }
