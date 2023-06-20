@@ -15,6 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final todoList = TodoModel.todoList();  
+    
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,7 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Container(
-            padding:  EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            padding:  const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Column(
               children: [
                 searchBox(),
@@ -31,15 +32,12 @@ class _HomeState extends State<Home> {
                   child: ListView(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 40, bottom: 20),
+                        margin: const EdgeInsets.only(top: 40, bottom: 20),
                         child: Text('All To-Do', style: ThemeStyling.titleStyle,),
                       ),
                       for(TodoModel toDo in todoList)
-                      TodoItems(todo: toDo,),
-                    //   TodoItems(),
-                    //   TodoItems(),
-                    //   TodoItems(),
-                    //   TodoItems(),
+                        TodoItems(todo: toDo, todoFunction: _todoFunction, todoDeleteFunction: _todoDelegteFunction,),
+                                           
                     ],
                   ),
                 )
@@ -52,14 +50,14 @@ class _HomeState extends State<Home> {
               children: [
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    margin: EdgeInsets.only(left: 20, bottom: 20, right: 20),                    
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    margin: const EdgeInsets.only(left: 20, bottom: 20, right: 20),                    
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [BoxShadow(color: greyColor, offset: const Offset(0.0, 0.0), blurRadius: 10, spreadRadius: 0)]
+                      boxShadow: const [BoxShadow(color: greyColor, offset: Offset(0.0, 0.0), blurRadius: 10, spreadRadius: 0)]
                     ),
-                    child: TextField(
+                    child: const TextField(
                       decoration: InputDecoration(
                         hintText: 'Add a todo Item',
                         border: InputBorder.none
@@ -67,6 +65,20 @@ class _HomeState extends State<Home> {
                     ),
                     
                   ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(
+                    bottom: 20, right: 20
+                  ),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: blueColor,
+                      minimumSize: Size(60, 60),
+                      elevation: 10
+                    ),
+                    onPressed: (){},
+                    child: Text('+', style: TextStyle(fontSize: 40),)),
                 )
               ],
             ),
@@ -84,7 +96,7 @@ AppBar _appBar(){
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.menu, color: blackColor,size: 30,),
+            const Icon(Icons.menu, color: blackColor,size: 30,),
             Container(
               height: 40,
               width: 40,
@@ -98,9 +110,19 @@ AppBar _appBar(){
       );
 }
 
+_todoFunction(TodoModel todo){
+  todo.isdone = !todo.isdone!;
+
+}
+
+void _todoDelegteFunction(TodoModel todo){
+  todo.isdone = !todo.isdone!;
+
+}
+
 Widget searchBox(){
   return Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),              
